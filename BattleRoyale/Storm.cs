@@ -541,7 +541,7 @@ namespace BattleRoyale
                     Tuple.Create("IslandWest", Storm.Direction.CloseIn, new Phase.TwoPointRectangle(6720, 2575, 6720, 2575)),
                     Tuple.Create("IslandEast", Storm.Direction.CloseIn, new Phase.TwoPointRectangle(0, 2960, 0, 2960)),
                     Tuple.Create("IslandNorth", Storm.Direction.UpToDown),
-                }),
+                }, delay: new TimeSpan(0, 0, seconds: 60)),
 
                 new Phase(new List<object>()
                 {
@@ -576,7 +576,7 @@ namespace BattleRoyale
                     Tuple.Create("IslandSouthEast", Storm.Direction.RightToLeft),
                     Tuple.Create("IslandNorth", Storm.Direction.UpToDown),
                     Tuple.Create("IslandWest", Storm.Direction.CloseIn, new Phase.TwoPointRectangle(6720, 2575, 6720, 2575))
-                }),
+                }, delay: new TimeSpan(0, 0, seconds: 60)),
 
                 new Phase(new List<object>()
                 {
@@ -604,7 +604,7 @@ namespace BattleRoyale
                     Tuple.Create("IslandEast", Storm.Direction.CloseIn, new Phase.TwoPointRectangle(0, 2960, 0, 2960)),
                     Tuple.Create("IslandSouthEast", Storm.Direction.RightToLeft),
                     Tuple.Create("IslandNorth", Storm.Direction.UpToDown)
-                }),
+                }, delay: new TimeSpan(0, 0, seconds: 60)),
 
                 new Phase(new List<object>()
                 {
@@ -637,7 +637,7 @@ namespace BattleRoyale
                     Tuple.Create("IslandEast", Storm.Direction.CloseIn, new Phase.TwoPointRectangle(0, 2960, 0, 2960)),
                     Tuple.Create("IslandSouthEast", Storm.Direction.RightToLeft),
                     Tuple.Create("IslandNorth", Storm.Direction.UpToDown)
-                }),
+                }, delay: new TimeSpan(0, 0, seconds: 60)),
 
                 new Phase(new List<object>()
                 {
@@ -674,7 +674,7 @@ namespace BattleRoyale
                 new Phase(new List<object>()
                 {
                     Tuple.Create("IslandNorth", Storm.Direction.DownToUp)
-                }),
+                }, delay: new TimeSpan(0, 0, seconds: 60)),
 
                 new Phase(new List<object>()
                 {
