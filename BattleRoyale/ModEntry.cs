@@ -107,10 +107,6 @@ namespace BattleRoyale
                 return;
             }
 
-            Multiplayer stardewMutliplayer = helper.Reflection.GetField<Multiplayer>(typeof(Game1), "multiplayer").GetValue();
-            stardewMutliplayer.farmerDeltaBroadcastPeriod = 1;
-            stardewMutliplayer.locationDeltaBroadcastPeriod = 1;
-
             Multiplayer = helper.Multiplayer;
             Events = helper.Events;
 
