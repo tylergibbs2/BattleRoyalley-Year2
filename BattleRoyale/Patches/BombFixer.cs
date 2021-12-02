@@ -8,7 +8,7 @@ namespace BattleRoyale
 {
     class BombFixer : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(TemporaryAnimatedSprite), "update");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(TemporaryAnimatedSprite), "update");
 
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instr)
         {

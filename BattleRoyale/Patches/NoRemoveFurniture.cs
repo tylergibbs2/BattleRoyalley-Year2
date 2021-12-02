@@ -5,7 +5,7 @@ namespace BattleRoyale.Patches
 {
     class NoRemoveFurniture : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(Furniture), "canBeRemoved");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(Furniture), "canBeRemoved");
 
         public static bool Prefix(ref bool __result)
         {
@@ -24,7 +24,7 @@ namespace BattleRoyale.Patches
             "Barrel Brazier"
         };
 
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(Object), "performToolAction");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(Object), "performToolAction");
 
         public static bool Prefix(Object __instance, ref bool __result)
         {

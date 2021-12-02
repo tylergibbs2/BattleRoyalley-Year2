@@ -5,7 +5,7 @@ namespace BattleRoyale.Patches
 {
     class SlingshotPatch2 : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(GameLocation), "UpdateWhenCurrentLocation");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(GameLocation), "UpdateWhenCurrentLocation");
 
         public static void Postfix(GameLocation __instance, GameTime time)
         {

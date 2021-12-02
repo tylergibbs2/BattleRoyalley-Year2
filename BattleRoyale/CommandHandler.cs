@@ -9,7 +9,7 @@ namespace BattleRoyale
 {
     class CommandHandler
     {
-        private static readonly Dictionary<string, Action<string[]>> commands = new Dictionary<string, Action<string[]>>()
+        private static readonly Dictionary<string, Action<string[]>> commands = new()
         {
             { "kill", Kill },
             { "spectate", Spectate },

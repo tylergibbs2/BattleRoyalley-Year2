@@ -6,7 +6,7 @@ namespace BattleRoyale.Patches
 {
     class DoorsAlwaysOpenPatch : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(GameLocation), "lockedDoorWarp");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(GameLocation), "lockedDoorWarp");
 
         public static bool Prefix(GameLocation __instance, string[] actionParams)
         {
@@ -21,7 +21,7 @@ namespace BattleRoyale.Patches
 
     class InteriorDoorsAlwaysOpen : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(InteriorDoor), "Update");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(InteriorDoor), "Update");
 
         public static bool Prefix(InteriorDoor __instance, GameTime time)
         {

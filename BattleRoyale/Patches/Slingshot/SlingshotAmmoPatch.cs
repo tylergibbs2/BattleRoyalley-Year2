@@ -6,7 +6,7 @@ namespace BattleRoyale.Patches
     //Prevent reducing ammo by 1 when you click on the slingshot (not fire)
     class SlingshotAmmoPatch1 : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(Slingshot), "DoFunction");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(Slingshot), "DoFunction");
 
         private static StardewValley.Object oldObject;
         private static int oldStack = 0;

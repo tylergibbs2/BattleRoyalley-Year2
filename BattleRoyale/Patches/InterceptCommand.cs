@@ -5,7 +5,7 @@ namespace BattleRoyale.Patches
 {
     class InterceptCommand : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(ChatBox), "runCommand");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(ChatBox), "runCommand");
 
         public static bool Prefix(string command)
         {
@@ -16,7 +16,7 @@ namespace BattleRoyale.Patches
 
     class CustomHelp : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(ChatBox), "showHelp");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(ChatBox), "showHelp");
 
         public static bool Prefix(ChatBox __instance)
         {

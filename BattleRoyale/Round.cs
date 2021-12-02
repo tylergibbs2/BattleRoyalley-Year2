@@ -36,7 +36,7 @@ namespace BattleRoyale
         private readonly int[] timesOfDay = new int[4] { 900, 1200, 2000, 2400 };
         private readonly string[] seasons = new string[4] { "spring", "summer", "fall", "winter" };
 
-        private readonly Dictionary<SpecialRoundType, string> AnnounceMessages = new Dictionary<SpecialRoundType, string>()
+        private readonly Dictionary<SpecialRoundType, string> AnnounceMessages = new()
         {
             { SpecialRoundType.SLINGSHOT_ONLY, "Practice your aim! It's time to get shootin'!" },
             { SpecialRoundType.BOMBS_ONLY, "Explosives detected in Stardew Valley! Watch your step!" },
@@ -54,7 +54,7 @@ namespace BattleRoyale
             get { return StartTime != null && EndTime == null; }
         }
 
-        public int Index
+        public static int Index
         {
             get { return ModEntry.BRGame.Rounds.Count - 1; }
         }
@@ -82,7 +82,7 @@ namespace BattleRoyale
             NetworkUtils.SynchronizeTimeData();
         }
 
-        public bool ShouldDoSpecialRound()
+        public static bool ShouldDoSpecialRound()
         {
             if (ModEntry.BRGame.ForceSpecialRound)
             {
@@ -97,7 +97,7 @@ namespace BattleRoyale
             if (!ShouldDoSpecialRound())
                 return null;
 
-            List<SpecialRoundType> roundTypes = new List<SpecialRoundType>();
+            List<SpecialRoundType> roundTypes = new();
             foreach (SpecialRoundType roundType in Enum.GetValues(typeof(SpecialRoundType)))
                 roundTypes.Add(roundType);
 
@@ -132,12 +132,12 @@ namespace BattleRoyale
             EquipmentDrops.Reset(GingerIsland);
             Monsters.Reset();
 
-            new Chests().SpawnAndFillChests(GingerIsland);
+            Chests.SpawnAndFillChests(GingerIsland);
 
             SetupTime();
 
             //Spawn players in & Tell the clients to start game
-            var chosenSpawns = new Spawns().ScatterPlayers(Participants, GingerIsland);
+            var chosenSpawns = Spawns.ScatterPlayers(Participants, GingerIsland);
             foreach (Farmer player in chosenSpawns.Keys)
                 NetworkUtils.WarpFarmer(player, chosenSpawns[player]);
 
@@ -147,20 +147,12 @@ namespace BattleRoyale
                 string lastChosen = "";
                 foreach (Farmer player in Participants)
                 {
-                    string team;
-                    switch (lastChosen)
+                    string team = lastChosen switch
                     {
-                        case "red":
-                            team = "green";
-                            break;
-                        case "green":
-                            team = "blue";
-                            break;
-                        case "blue":
-                        default:
-                            team = "red";
-                            break;
-                    }
+                        "red" => "green",
+                        "green" => "blue",
+                        _ => "red",
+                    };
                     lastChosen = team;
 
                     NetworkMessage.Send(
@@ -217,6 +209,18 @@ namespace BattleRoyale
                     case SpecialRoundType.MONSTERS:
                         Game1.changeMusicTrack("spirits_eve");
                         break;
+                    case SpecialRoundType.SLINGSHOT_ONLY:
+                        break;
+                    case SpecialRoundType.BOMBS_ONLY:
+                        break;
+                    case SpecialRoundType.NO_FOOD:
+                        break;
+                    case SpecialRoundType.TEAMS:
+                        break;
+                    case SpecialRoundType.TRAVELLING_CART:
+                        break;
+                    default:
+                        break;
                 }
             }, 1000);
         }
@@ -240,7 +244,7 @@ namespace BattleRoyale
         public void SetupUI(int numberOfPlayers)
         {
             // Setup UI
-            if (!(Game1.activeClickableMenu is CharacterCustomization))
+            if (Game1.activeClickableMenu is not CharacterCustomization)
                 Game1.activeClickableMenu?.exitThisMenu(false);
 
             foreach (IClickableMenu menu in Game1.onScreenMenus.ToList())
@@ -256,7 +260,7 @@ namespace BattleRoyale
             Game1.onScreenMenus.Add(overlayUI);
         }
 
-        public void TeardownUI()
+        public static void TeardownUI()
         {
             // Remove the overlay
             foreach (IClickableMenu menu in Game1.onScreenMenus.ToList())

@@ -29,12 +29,12 @@ namespace BattleRoyale
 
         public static IMultiplayerHelper Multiplayer { get; private set; }
 
-        private readonly Dictionary<int, string> customTooltips = new Dictionary<int, string>()
+        private readonly Dictionary<int, string> customTooltips = new()
         {
             { 529, "Increases knockback by 50%." }  // Amethyst Ring,
         };
 
-        private readonly Dictionary<string, string> modifiedAssets = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> modifiedAssets = new()
         {
             { "Minigames/TitleButtons", "Assets/title.png" },
             { "TileSheets/furniture", "Assets/furniture.png" },
@@ -53,10 +53,10 @@ namespace BattleRoyale
 
         public ModEntry()
         {
-            var h = new Harmony("ilyaki.battleroyale_ctor");
+            Harmony h = new("ilyaki.battleroyale_ctor");
 
             {
-                var toPatch = new List<MethodBase>();
+                List<MethodBase> toPatch = new();
                 toPatch.AddRange(h.GetPatchedMethods().Where(x => x.DeclaringType.Assembly != Assembly.GetAssembly(typeof(Game1))));
 
                 foreach (MethodBase method in toPatch)
@@ -77,14 +77,21 @@ namespace BattleRoyale
             return false;
         }
 
-        public bool IsOnlyMod()
+        public static bool IsOnlyMod()
         {
             foreach (Assembly assm in AppDomain.CurrentDomain.GetAssemblies())
             {
                 if (assm == Assembly.GetExecutingAssembly())
                     continue;
 
-                foreach (Type type in assm.GetTypes())
+                Type[] assmTypes = Array.Empty<Type>();
+                try
+                {
+                    assmTypes = assm.GetTypes();
+                }
+                catch (ReflectionTypeLoadException) { }
+
+                foreach (Type type in assmTypes)
                 {
                     if (type.IsSubclassOf(typeof(Mod)))
                         return false;
@@ -100,7 +107,7 @@ namespace BattleRoyale
             {
                 Game1.quit = true;
 
-                Console.Clear();
+                //Console.Clear();
                 Monitor.Log("Please uninstall all other mods to play Battle Royalley.", LogLevel.Warn);
                 Monitor.Log("Press any key to continue...", LogLevel.Warn);
                 Console.ReadKey();
@@ -113,12 +120,12 @@ namespace BattleRoyale
             var config = helper.ReadConfig<ModConfig>();
             if (config == null)
             {
-                config = new ModConfig();
+                config = new();
                 helper.WriteConfig(config);
             }
 
-            BRGame = new Game(helper, Monitor);
-            Leaderboard = new Leaderboard();
+            BRGame = new(helper, Monitor);
+            Leaderboard = new();
             Config = config;
 
             Patch.PatchAll("ilyaki.battleroyale");
@@ -147,7 +154,7 @@ namespace BattleRoyale
                 NetworkMessage.Send(
                     NetworkUtils.MessageTypes.TOGGLE_SPECTATE,
                     NetworkMessageDestination.ALL,
-                    new List<object>() { Game1.player.UniqueMultiplayerID, !BRGame.isSpectating }
+                    new() { Game1.player.UniqueMultiplayerID, !BRGame.isSpectating }
                 );
             });
 
@@ -178,6 +185,320 @@ namespace BattleRoyale
                     case Keys.Tab:
                         Leaderboard.TryShow();
                         break;
+                    case Keys.None:
+                        break;
+                    case Keys.Back:
+                        break;
+                    case Keys.Enter:
+                        break;
+                    case Keys.CapsLock:
+                        break;
+                    case Keys.Escape:
+                        break;
+                    case Keys.Space:
+                        break;
+                    case Keys.PageUp:
+                        break;
+                    case Keys.PageDown:
+                        break;
+                    case Keys.End:
+                        break;
+                    case Keys.Home:
+                        break;
+                    case Keys.Left:
+                        break;
+                    case Keys.Up:
+                        break;
+                    case Keys.Right:
+                        break;
+                    case Keys.Down:
+                        break;
+                    case Keys.Select:
+                        break;
+                    case Keys.Print:
+                        break;
+                    case Keys.Execute:
+                        break;
+                    case Keys.PrintScreen:
+                        break;
+                    case Keys.Insert:
+                        break;
+                    case Keys.Delete:
+                        break;
+                    case Keys.Help:
+                        break;
+                    case Keys.D0:
+                        break;
+                    case Keys.D1:
+                        break;
+                    case Keys.D2:
+                        break;
+                    case Keys.D3:
+                        break;
+                    case Keys.D4:
+                        break;
+                    case Keys.D5:
+                        break;
+                    case Keys.D6:
+                        break;
+                    case Keys.D7:
+                        break;
+                    case Keys.D8:
+                        break;
+                    case Keys.D9:
+                        break;
+                    case Keys.A:
+                        break;
+                    case Keys.B:
+                        break;
+                    case Keys.C:
+                        break;
+                    case Keys.D:
+                        break;
+                    case Keys.E:
+                        break;
+                    case Keys.F:
+                        break;
+                    case Keys.G:
+                        break;
+                    case Keys.H:
+                        break;
+                    case Keys.I:
+                        break;
+                    case Keys.J:
+                        break;
+                    case Keys.K:
+                        break;
+                    case Keys.L:
+                        break;
+                    case Keys.M:
+                        break;
+                    case Keys.N:
+                        break;
+                    case Keys.O:
+                        break;
+                    case Keys.P:
+                        break;
+                    case Keys.Q:
+                        break;
+                    case Keys.R:
+                        break;
+                    case Keys.S:
+                        break;
+                    case Keys.T:
+                        break;
+                    case Keys.U:
+                        break;
+                    case Keys.V:
+                        break;
+                    case Keys.W:
+                        break;
+                    case Keys.X:
+                        break;
+                    case Keys.Y:
+                        break;
+                    case Keys.Z:
+                        break;
+                    case Keys.LeftWindows:
+                        break;
+                    case Keys.RightWindows:
+                        break;
+                    case Keys.Apps:
+                        break;
+                    case Keys.Sleep:
+                        break;
+                    case Keys.NumPad0:
+                        break;
+                    case Keys.NumPad1:
+                        break;
+                    case Keys.NumPad2:
+                        break;
+                    case Keys.NumPad3:
+                        break;
+                    case Keys.NumPad4:
+                        break;
+                    case Keys.NumPad5:
+                        break;
+                    case Keys.NumPad6:
+                        break;
+                    case Keys.NumPad7:
+                        break;
+                    case Keys.NumPad8:
+                        break;
+                    case Keys.NumPad9:
+                        break;
+                    case Keys.Multiply:
+                        break;
+                    case Keys.Add:
+                        break;
+                    case Keys.Separator:
+                        break;
+                    case Keys.Subtract:
+                        break;
+                    case Keys.Decimal:
+                        break;
+                    case Keys.Divide:
+                        break;
+                    case Keys.F2:
+                        break;
+                    case Keys.F3:
+                        break;
+                    case Keys.F4:
+                        break;
+                    case Keys.F5:
+                        break;
+                    case Keys.F6:
+                        break;
+                    case Keys.F7:
+                        break;
+                    case Keys.F8:
+                        break;
+                    case Keys.F9:
+                        break;
+                    case Keys.F10:
+                        break;
+                    case Keys.F11:
+                        break;
+                    case Keys.F12:
+                        break;
+                    case Keys.F13:
+                        break;
+                    case Keys.F14:
+                        break;
+                    case Keys.F15:
+                        break;
+                    case Keys.F16:
+                        break;
+                    case Keys.F17:
+                        break;
+                    case Keys.F18:
+                        break;
+                    case Keys.F19:
+                        break;
+                    case Keys.F20:
+                        break;
+                    case Keys.F21:
+                        break;
+                    case Keys.F22:
+                        break;
+                    case Keys.F23:
+                        break;
+                    case Keys.F24:
+                        break;
+                    case Keys.NumLock:
+                        break;
+                    case Keys.Scroll:
+                        break;
+                    case Keys.LeftShift:
+                        break;
+                    case Keys.RightShift:
+                        break;
+                    case Keys.LeftControl:
+                        break;
+                    case Keys.LeftAlt:
+                        break;
+                    case Keys.BrowserBack:
+                        break;
+                    case Keys.BrowserForward:
+                        break;
+                    case Keys.BrowserRefresh:
+                        break;
+                    case Keys.BrowserStop:
+                        break;
+                    case Keys.BrowserSearch:
+                        break;
+                    case Keys.BrowserFavorites:
+                        break;
+                    case Keys.BrowserHome:
+                        break;
+                    case Keys.VolumeMute:
+                        break;
+                    case Keys.VolumeDown:
+                        break;
+                    case Keys.VolumeUp:
+                        break;
+                    case Keys.MediaNextTrack:
+                        break;
+                    case Keys.MediaPreviousTrack:
+                        break;
+                    case Keys.MediaStop:
+                        break;
+                    case Keys.MediaPlayPause:
+                        break;
+                    case Keys.LaunchMail:
+                        break;
+                    case Keys.SelectMedia:
+                        break;
+                    case Keys.LaunchApplication1:
+                        break;
+                    case Keys.LaunchApplication2:
+                        break;
+                    case Keys.OemSemicolon:
+                        break;
+                    case Keys.OemPlus:
+                        break;
+                    case Keys.OemComma:
+                        break;
+                    case Keys.OemMinus:
+                        break;
+                    case Keys.OemPeriod:
+                        break;
+                    case Keys.OemQuestion:
+                        break;
+                    case Keys.OemTilde:
+                        break;
+                    case Keys.OemOpenBrackets:
+                        break;
+                    case Keys.OemPipe:
+                        break;
+                    case Keys.OemCloseBrackets:
+                        break;
+                    case Keys.OemQuotes:
+                        break;
+                    case Keys.Oem8:
+                        break;
+                    case Keys.OemBackslash:
+                        break;
+                    case Keys.ProcessKey:
+                        break;
+                    case Keys.Attn:
+                        break;
+                    case Keys.Crsel:
+                        break;
+                    case Keys.Exsel:
+                        break;
+                    case Keys.EraseEof:
+                        break;
+                    case Keys.Play:
+                        break;
+                    case Keys.Zoom:
+                        break;
+                    case Keys.Pa1:
+                        break;
+                    case Keys.OemClear:
+                        break;
+                    case Keys.ChatPadGreen:
+                        break;
+                    case Keys.ChatPadOrange:
+                        break;
+                    case Keys.Pause:
+                        break;
+                    case Keys.ImeConvert:
+                        break;
+                    case Keys.ImeNoConvert:
+                        break;
+                    case Keys.Kana:
+                        break;
+                    case Keys.Kanji:
+                        break;
+                    case Keys.OemAuto:
+                        break;
+                    case Keys.OemCopy:
+                        break;
+                    case Keys.OemEnlW:
+                        break;
+                    default:
+                        break;
                 }
 
                 if (e.Button is SButton.MouseLeft)
@@ -207,7 +528,7 @@ namespace BattleRoyale
 
             Events.GameLoop.SaveLoaded += (o, e) =>
             {
-                BRGame = new Game(helper, Monitor);
+                BRGame = new(helper, Monitor);
 
                 if (Game1.player != Game1.MasterPlayer)
                     return;
@@ -216,13 +537,13 @@ namespace BattleRoyale
 
                 Leaderboard.InitPlayer(Game1.player);
 
-                for (int i = 0; i < Game1.player.items.Count; i++)
-                    Game1.player.items[i] = null;
+                for (int i = 0; i < Game1.player.Items.Count; i++)
+                    Game1.player.Items[i] = null;
 
                 Game1.player.Name = "";
                 Game1.player.favoriteThing.Value = "";
 
-                NetworkUtils.WarpFarmer(Game1.player, new TileLocation("Mountain", 117, 30));
+                NetworkUtils.WarpFarmer(Game1.player, new("Mountain", 117, 30));
                 Game1.activeClickableMenu = new CharacterCustomization(CharacterCustomization.Source.NewFarmhand);
             };
 
@@ -243,7 +564,7 @@ namespace BattleRoyale
             {
                 foreach (IClickableMenu menu in Game1.onScreenMenus.ToList())
                 {
-                    if (menu is VictoryRoyale && (menu as VictoryRoyale).GetTimeSince() == null)
+                    if (menu is VictoryRoyale royale && royale.GetTimeSince() == null)
                         Game1.onScreenMenus.Remove(menu);
                     if (menu is SpectateToolbar && !SpectatorMode.InSpectatorMode)
                         Game1.onScreenMenus.Remove(menu);
@@ -269,7 +590,7 @@ namespace BattleRoyale
                             if (SpectatorMode.Following == null && menu is SpectateToolbar)
                                 continue;
 
-                            if (menu != Game1.chatBox && !(menu is Toolbar))
+                            if (menu != Game1.chatBox && menu is not Toolbar)
                             {
                                 menu.update(Game1.currentGameTime);
                                 menu.draw(Game1.spriteBatch);

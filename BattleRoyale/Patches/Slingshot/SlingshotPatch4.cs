@@ -8,7 +8,7 @@ namespace BattleRoyale.Patches
 {
     class SlingshotPatch4 : Patch
     {
-        protected override PatchDescriptor GetPatchDescriptor() => new PatchDescriptor(typeof(BasicProjectile), "behaviorOnCollisionWithPlayer");
+        protected override PatchDescriptor GetPatchDescriptor() => new(typeof(BasicProjectile), "behaviorOnCollisionWithPlayer");
 
         public static bool Prefix(BasicProjectile __instance, GameLocation location, Farmer player)
         {
