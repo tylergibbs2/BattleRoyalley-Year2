@@ -14,22 +14,13 @@ namespace BattleRoyale.Patches
         {
             bool damagesMonsters = ModEntry.BRGame.Helper.Reflection.GetField<NetBool>(__instance, "damagesMonsters").GetValue().Value;
 
-            Console.WriteLine($"damage, m = {damagesMonsters}");
-            if (!damagesMonsters || true && SlingshotPatch5.GetFarmerBounds(player).Intersects(__instance.getBoundingBox()))//TODO: remove?
+            if (SlingshotPatch5.GetFarmerBounds(player).Intersects(__instance.getBoundingBox()))
             {
                 //TODO: modify slingshot damage here?
                 int damage = __instance.damageToFarmer.Value;
 
-                if (player == Game1.player)
-                {
-                    Console.WriteLine("sending slingshot damage to self");
-                    FarmerUtils.TakeDamage(Game1.player, DamageSource.PLAYER, damage, Game1.player.UniqueMultiplayerID);
-                }
-                else
-                {
-                    Console.WriteLine("sending slingshot damage to other player");
-                    FarmerUtils.TakeDamage(player, DamageSource.PLAYER, damage, Game1.player.UniqueMultiplayerID);
-                }
+                Console.WriteLine("sending slingshot damage to other player");
+                FarmerUtils.TakeDamage(player, DamageSource.PLAYER, damage, Game1.player.UniqueMultiplayerID);
 
                 try
                 {
