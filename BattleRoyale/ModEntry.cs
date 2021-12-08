@@ -1,4 +1,4 @@
-﻿using BattleRoyale.Patches;
+using BattleRoyale.Patches;
 using BattleRoyale.UI;
 using BattleRoyale.Utils;
 using HarmonyLib;
@@ -107,7 +107,7 @@ namespace BattleRoyale
             {
                 Game1.quit = true;
 
-                //Console.Clear();
+                Console.Clear();
                 Monitor.Log("Please uninstall all other mods to play Battle Royalley.", LogLevel.Warn);
                 Monitor.Log("Press any key to continue...", LogLevel.Warn);
                 Console.ReadKey();
