@@ -209,18 +209,6 @@ namespace BattleRoyale
                     case SpecialRoundType.MONSTERS:
                         Game1.changeMusicTrack("spirits_eve");
                         break;
-                    case SpecialRoundType.SLINGSHOT_ONLY:
-                        break;
-                    case SpecialRoundType.BOMBS_ONLY:
-                        break;
-                    case SpecialRoundType.NO_FOOD:
-                        break;
-                    case SpecialRoundType.TEAMS:
-                        break;
-                    case SpecialRoundType.TRAVELLING_CART:
-                        break;
-                    default:
-                        break;
                 }
             }, 1000);
         }

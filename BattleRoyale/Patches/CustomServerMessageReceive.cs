@@ -83,44 +83,6 @@ namespace BattleRoyale.Patches
                         AutoKicker.AcknowledgeClientVersion(sourceFarmer.UniqueMultiplayerID, major, minor, sha);
                     }
                     return false;
-                case NetworkUtils.MessageTypes.KICK_PLAYER:
-                    break;
-                case NetworkUtils.MessageTypes.TAKE_DAMAGE:
-                    break;
-                case NetworkUtils.MessageTypes.SERVER_BROADCAST_ROUND_START:
-                    break;
-                case NetworkUtils.MessageTypes.SERVER_BROADCAST_ROUND_END:
-                    break;
-                case NetworkUtils.MessageTypes.ANNOUNCE_CLIENT_DEATH:
-                    break;
-                case NetworkUtils.MessageTypes.SEND_DEATH_ANIMATION:
-                    break;
-                case NetworkUtils.MessageTypes.TELL_PLAYER_HIT_SHAKE_TIMER:
-                    break;
-                case NetworkUtils.MessageTypes.SERVER_BROADCAST_CHAT_MESSAGE:
-                    break;
-                case NetworkUtils.MessageTypes.BROADCAST_ALIVE_COUNT:
-                    break;
-                case NetworkUtils.MessageTypes.WARP:
-                    break;
-                case NetworkUtils.MessageTypes.SEND_STORM_PHASE_DATA:
-                    break;
-                case NetworkUtils.MessageTypes.SYNCHRONIZE_TIME:
-                    break;
-                case NetworkUtils.MessageTypes.TOGGLE_SPECTATE:
-                    break;
-                case NetworkUtils.MessageTypes.ON_JOIN:
-                    break;
-                case NetworkUtils.MessageTypes.RETURN_TO_LOBBY:
-                    break;
-                case NetworkUtils.MessageTypes.PERFORM_EMOTE:
-                    break;
-                case NetworkUtils.MessageTypes.LEADERBOARD_DATA_SYNC:
-                    break;
-                case NetworkUtils.MessageTypes.BROADCAST_TEAM:
-                    break;
-                default:
-                    return true;
             }
 
             return false;
