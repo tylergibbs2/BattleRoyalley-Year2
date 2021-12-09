@@ -148,7 +148,7 @@ namespace BattleRoyale
                 return;
             }
 
-            Game1.player.name.Value = name;
+            Game1.player.Name = name;
 
             Game1.chatBox.addInfoMessage("Successfully changed username.");
         }
