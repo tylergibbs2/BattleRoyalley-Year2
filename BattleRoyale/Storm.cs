@@ -460,7 +460,7 @@ namespace BattleRoyale
                     bool contains = bounds.Contains(Utility.Vector2ToPoint(farmer.Position));
                     if (contains && (closeInRectangle == null) || (!contains) && (closeInRectangle != null))
                     {
-                        int damage = (int)(ModEntry.Config.StormDamagePerSecond);
+                        int damage = ModEntry.Config.StormDamagePerSecond;
                         FarmerUtils.TakeDamage(farmer, DamageSource.STORM, damage);
                     }
                 }
