@@ -29,7 +29,7 @@ namespace BattleRoyale
 
         public Vector2 TilePosition { get; set; }
 
-        public ChestGrade Grade { get; set; } = Chests.GetRandomChestGrade();
+        public ChestGrade Grade { get; set; }
 
         public bool BeenOpened { get; set; } = false;
 
@@ -179,6 +179,7 @@ namespace BattleRoyale
 
         public static void CreateStardewChest(Chest chest)
         {
+            chest.Grade = GetRandomChestGrade();
             StardewValley.Objects.Chest stardewChest = new(true);
 
             AddItems(chest, stardewChest);
